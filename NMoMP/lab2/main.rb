@@ -3,7 +3,7 @@ require_relative 'function.rb'
 require_relative 'vars.rb'
 require_relative 'solver.rb'
 
-n = 100000
+n = ARGV.size > 0 ? ARGV[0].to_i : 10000
 drawer = Drawer.new
 
 Solver.new(n).tap do |m|
