@@ -4,9 +4,19 @@ require_relative 'vars.rb'
 class Solver
   include Vars
 
+  def step
+    return (@b-@a).to_f / @number_of_points if @number_of_points.is_a?(Fixnum) 
+    @number_of_points
+  end
+
   def solve
-    n = @number_of_points
-    h = (@b-@a).to_f / n
+    if @number_of_points.is_a?(Fixnum)
+      n = @number_of_points
+      h = (@b-@a).to_f / n
+    else
+      h = @number_of_points
+      n = ((@b-@a) / h).to_i + 1
+    end
     @xs = []
     n.times { |i| @xs << (@a + i*h) }
     b_plus = lambda do |x|
@@ -18,6 +28,7 @@ class Solver
     hi = lambda do |x|
       r = h/2 * (p(x)).abs / k(x)
       1 / (1+r)
+      
     end
     phi = lambda do |x|
       0.5*(rhs(x - h/2) + rhs(x + h/2))
@@ -27,16 +38,18 @@ class Solver
     end
     a = lambda { |x| k(x-h/2) }
     aa, bb, cc, ff = [[],[],[],[]]
-    @xs.each do |x|
+    @xs[1..-2].each do |x|
       aa << (a.call(x) / (h**2) * (hi.call(x) - h*b_minus.call(x)))
       bb << (a.call(x+h) / (h**2) * (hi.call(x) + h*b_plus.call(x)))
       cc << (-aa[-1] - bb[-1] - d.call(x))
       ff << (-phi.call(x))
     end
-    ff[0] = ff[0] - aa[0]*@al
+    ff[0]  = ff[0] - aa[0]*@al
     ff[-1] = ff[-1] - bb[-1]*@ga
     aa[0] = bb[-1] = 0
-    @ys = progonka(aa,bb,cc,ff)
+    @ys = [@al]
+    @ys = @ys + progonka(aa,bb,cc,ff)
+    @ys << @ga
   end
 
   def solution
