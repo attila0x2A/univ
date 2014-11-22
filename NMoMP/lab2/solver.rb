@@ -28,7 +28,7 @@ class Solver
     hi = lambda do |x|
       r = h/2 * (p(x)).abs / k(x)
       1 / (1+r)
-      
+      1
     end
     phi = lambda do |x|
       0.5*(rhs(x - h/2) + rhs(x + h/2))

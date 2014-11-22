@@ -6,7 +6,7 @@ module Vars
 
   def precise_solution
     lambda do |x|
-      @a1*x**@n1 + @a2*x**@n2 + @a3*x**@n3 + @a4   
+      @a1*x**@n1 + @a2*x**@n2 + @a3*x**@n3 + @a4
     end
   end
 

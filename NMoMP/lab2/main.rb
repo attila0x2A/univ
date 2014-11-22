@@ -13,9 +13,10 @@ m.solve
 xs, ys = m.solution
 us = xs.map { |x| m.precise_solution.call(x) }
 
-output.puts m.step
+i = 0
 xs.zip(ys, us) do |x,y,u|
-  output.puts "%2.12f %2.12f %2.12f %2.12f" %  [x,y,u,y-u]
+  output.puts "%2.12f %2.12f %2.12f %2.12f" %  [x,y,u,y-u] if i%7 == 0
+  i += 1
 end
 output.close
 
