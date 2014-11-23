@@ -1,22 +1,35 @@
 require_relative 'function.rb'
 
 class Solver
-  def initialize
+  attr_reader :num_of_iter
+
+  def initialize(n)
     @ux0 = 323
     @urt = 273
     @r   = 0.05
     @lam = 455
     @c   = 460
     @ro  = 7900
+    @u_last = 283
 
     @vx0   = 0
-    @vrt   = (@urt - @ux0).to_f / (@ux0)
+    @vrt   = (@urt - @ux0).to_f / @ux0
+    @des   = (@u_last - @ux0).to_f / @ux0
     @n     = 1000
     @sigma = 0.5
     @tau   = 0.01
+    @times = n
   end
 
-  def solve
+  def to_old(xs, ys)
+    xs = xs.map { |x| x*@r }
+    # to celciy
+    ys = ys.map { |y| y*@ux0 + @ux0 - 273 }
+    [xs, ys]
+  end
+
+  def solve(sigma)
+    @sigma = sigma if sigma
     h = 1.0 / @n
     @xs = []
     (@n+1).times { |i| @xs << i*h }
@@ -36,7 +49,8 @@ class Solver
     end
     res = []
     ys = Array.new(@n + 2, 0)
-    50.times do
+    k = 0
+    while (ys[0] > @des)
       as = []
       cs = []
       bs = []
@@ -53,9 +67,16 @@ class Solver
       as[0] = bs[-1] = 0
       ys = progonka(as, bs, cs, fs)
       ys = [ys[0]] + ys + [@vrt]
-      res << [@xs,ys]
+      #take every @times
+      if k % @times == 0
+        # converting to old
+        title = (k+1)*@tau * @c*@ro*@r*@r / @lam
+        res << [to_old(@xs,ys), title.to_s]
+      end
+      k += 1
     end
-    res
+    @num_of_iter = k
+    @res = res
   end
 
   private
