@@ -35,17 +35,18 @@ class Solver
     (@n+1).times { |i| @xs << i*h }
     ps = lambda do |i|
       x1 = i - 1
-      x2 = i + 1
+      x2 = i
       x1 = 0 if x1 < 0
       x2 = i if i == @n
-      (x1*x1 + x1*x2 + x2*x2)*h*h
+      h*h*(x1*x1 + x1*x2 + x2*x2)
+      #h*(i-0.5)
     end
     xx = lambda do |i|
       x1 = i - 1
       x2 = i + 1
       x1 = 0 if i == 0
       x2 = i if i == @n
-      (x1*x1 + x1*x2 + x2*x2)*h*h
+      h*h*(x1*x1 + x1*x2 + x2*x2) / 3.0
     end
     res = []
     ys = Array.new(@n + 2, 0)
