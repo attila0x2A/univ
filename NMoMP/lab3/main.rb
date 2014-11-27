@@ -5,11 +5,17 @@ require_relative 'solver.rb'
 drawer = Drawer.new
 #output = File.open("output", "w")
 
-m = Solver.new(1)
-res = m.solve(0.5)
-puts m.num_of_iter
+m = Solver.new(10)
 res = m.solve(1.0)
-puts m.num_of_iter
+puts "1"
+puts "Time: #{m.time_taken}"
+puts "Iterations: #{m.num_of_iter}"
+puts "Temperature: #{m.tempr}"
+res = m.solve(0.5)
+puts "0.5"
+puts "Time: #{m.time_taken}"
+puts "Iterations: #{m.num_of_iter}"
+puts "Temperature: #{m.tempr}"
 res[0..-1].each do |rr|
   func = Function.new.tap do |x|
     x.from = 0

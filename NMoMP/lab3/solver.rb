@@ -1,7 +1,7 @@
 require_relative 'function.rb'
 
 class Solver
-  attr_reader :num_of_iter
+  attr_reader :num_of_iter, :time_taken,:tempr
 
   def initialize(n)
     @ux0 = 323
@@ -15,9 +15,9 @@ class Solver
     @vx0   = 0
     @vrt   = (@urt - @ux0).to_f / @ux0
     @des   = (@u_last - @ux0).to_f / @ux0
-    @n     = 1000
+    @n     = 100
     @sigma = 0.5
-    @tau   = 0.01
+    @tau   = 0.5 / (@n * @n)
     @times = n
   end
 
@@ -28,7 +28,7 @@ class Solver
     [xs, ys]
   end
 
-  def solve(sigma)
+  def solve(sigma=nil)
     @sigma = sigma if sigma
     h = 1.0 / @n
     @xs = []
@@ -38,8 +38,8 @@ class Solver
       x2 = i
       x1 = 0 if x1 < 0
       x2 = i if i == @n
-      h*h*(x1*x1 + x1*x2 + x2*x2)
-      #h*(i-0.5)
+      #h*h*(x1*x1 + x1*x2 + x2*x2)
+      h*(i-0.5)
     end
     xx = lambda do |i|
       x1 = i - 1
@@ -68,16 +68,21 @@ class Solver
       as[0] = bs[-1] = 0
       ys = progonka(as, bs, cs, fs)
       ys = [ys[0]] + ys + [@vrt]
-      #take every @times
-      if k % @times == 0
-        # converting to old
-        title = (k+1)*@tau * @c*@ro*@r*@r / @lam
-        res << [to_old(@xs,ys), title.to_s]
-      end
+      # converting to old
+      title = (k+1)*@tau * @c*@ro*@r*@r / @lam
+      res << [to_old(@xs,ys), title.to_s]
       k += 1
     end
+    nu = res.size / @times
+    newRes = []
+    res.each.with_index do |x,i|
+      newRes << x if i % nu == 0
+    end
     @num_of_iter = k
-    @res = res
+    # need to be in function returning to old coordinates but no one cares
+    @time_taken = (k+1)*@tau * @c*@ro*@r*@r / @lam
+    @tempr = ys[0]*@ux0 + @ux0 - 273 
+    @res = newRes
   end
 
   private
