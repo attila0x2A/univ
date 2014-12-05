@@ -11,7 +11,7 @@ puts "1"
 puts "Time: #{m.time_taken}"
 puts "Iterations: #{m.num_of_iter}"
 puts "Temperature: #{m.tempr}"
-res = m.solve(0.5)
+res = m.solve(0.0)
 puts "0.5"
 puts "Time: #{m.time_taken}"
 puts "Iterations: #{m.num_of_iter}"

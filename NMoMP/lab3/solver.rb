@@ -15,9 +15,12 @@ class Solver
     @vx0   = 0
     @vrt   = (@urt - @ux0).to_f / @ux0
     @des   = (@u_last - @ux0).to_f / @ux0
-    @n     = 100
+    # GOOD with h= 0.05 tau = 0.0001
+    h     = 0.05
+    @n     = (1 / h).to_i
     @sigma = 0.5
-    @tau   = 0.5 / (@n * @n)
+    @tau   = 0.0001
+    #@tau   = h*h/20;
     @times = n
   end
 
