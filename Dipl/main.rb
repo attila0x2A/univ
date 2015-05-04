@@ -7,6 +7,8 @@ x = Ellipse.new.tap do |y|
 	y.phi = Math::PI/10
 end
 
+test_data = Array.new(2) { Array.new(20) { Random.rand(10) } }
+
 include Drawer
 
-draw([x, [3,4]])
+draw([x, test_data])

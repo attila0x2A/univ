@@ -1,6 +1,6 @@
 require_relative 'ellipse.rb'
 #require_relative 'exept.rb'
-require 'gnuplot.rb'
+require 'rcairo'
 
 module Drawer
 	def draw(objs)
@@ -20,8 +20,8 @@ module Drawer
 							ds.with = "lines"
 							ds.linewidth = 2
 						end
-					elsif obj.is_a?(Array) && obj.size == 2
-						plot.data << Gnuplot::DataSet.new([[obj[0]], [obj[1]]]) do |ds|
+					elsif obj.is_a?(Array)
+						plot.data << Gnuplot::DataSet.new(obj) do |ds|
 							ds.with = "linespoints"
 							ds.linewidth = 2
 						end
