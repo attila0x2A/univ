@@ -1,4 +1,4 @@
-require_relative 'draw.rb'
+require_relative 'test.rb'
 require_relative 'ellipse.rb'
 
 x = Ellipse.new.tap do |y|
@@ -7,8 +7,9 @@ x = Ellipse.new.tap do |y|
 	y.phi = Math::PI/10
 end
 
-test_data = Array.new(2) { Array.new(20) { Random.rand(10) } }
-
 include Drawer
-
-draw([x, test_data])
+points = Array.new(20) { Array.new(2) { Random.rand(10).to_f } }
+test_data = points.map { |y| [y] }
+rect = petunin(points)
+draw(rect)
+#draw(test_data)
