@@ -1,36 +1,65 @@
 require_relative 'ellipse.rb'
-#require_relative 'exept.rb'
-require 'rcairo'
+require 'cairo'
+
 
 module Drawer
-	def draw(objs)
-		Gnuplot.open { |gp|
-			Gnuplot::Plot.new( gp ) { |plot|
-				#plot.output "testgnu.pdf"
-				#plot.terminal "pdf colour size 27cm,19cm"
-				#plot.xrange "[-10:10]"
-				#plot.title  "Sin Wave Example"
+	private
+	def path(*pairs)
+		@cr.move_to(*pairs[0])
+		pairs.each do |c|
+			@cr.line_to(*c)
+		end
+		@cr.close_path
+	end
 
-				plot.ylabel "x"
-				plot.xlabel "y"
+	public
 
-				objs.each do |obj|
-					if obj.is_a? Ellipse
-						plot.data << Gnuplot::DataSet.new(obj.get_draw_data) do |ds|
-							ds.with = "lines"
-							ds.linewidth = 2
-						end
-					elsif obj.is_a?(Array)
-						plot.data << Gnuplot::DataSet.new(obj) do |ds|
-							ds.with = "linespoints"
-							ds.linewidth = 2
-						end
-					else
-						throw Exeption.new("Ah!:(")
-					end
-				end
+	# arr = [[xi,yi]]
+	# todo
+	#  add margin
+	#  take account that y is in unnatural dir
+	def draw(arr)
+		exit(1) unless arr.is_a? Array
 
-			}
-		}
+		xs = []
+		ys = []
+		arr.each do |a|
+			a.each do |x,y|
+				xs << x
+				ys << y
+			end
+		end
+		minX, maxX = xs.minmax
+		minY, maxY = ys.minmax
+
+		w = h = 768
+		#margin = 50
+		surface = Cairo::ImageSurface.new(w,h)
+		@cr = Cairo::Context.new(surface)
+		@cr.scale(w, h)
+		nw = maxX - minX
+		nh = maxY - minY
+		@cr.scale(1.0 / nw, 1.0 / nh)
+		@cr.translate(-minX, -minY)
+
+		@cr.set_line_cap(Cairo::LINE_CAP_ROUND)
+
+		# Background
+		@cr.set_source_rgba([0,0,0])
+		@cr.paint
+
+		arr.each do |obj|
+			color = obj.size == 1 ? [0,255,0] : [255,255,255]
+			width = obj.size == 1 ? 0.2 : 0.02
+			@cr.set_source(color)
+			@cr.set_line_width(width)
+			@cr.stroke_preserve
+			path(*obj)
+			@cr.stroke
+		end
+
+		@cr.target.write_to_png("test.png")
+
 	end
 end
+

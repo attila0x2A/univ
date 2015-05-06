@@ -1,4 +1,3 @@
-
 class Line
 	attr_accessor :a, :b, :c
 
@@ -39,7 +38,7 @@ class Line
 	def dist(x)
 		(@a * x[0] + @b * x[1] + c).abs / Math.sqrt(@a**2 + @b**2)
 	end
-end
+end # Line
 
 class Ellipse
 	attr_accessor :centre, :axes, :phi
@@ -57,7 +56,7 @@ class Ellipse
 		cphi = Math.cos(phi)
 		sphi = Math.sin(phi)
 		@centre = [ x*cphi + y*sphi,
-							  -x*sphi + y*cphi]
+							-x*sphi + y*cphi]
 	end
 
 	def translate(dx,dy)
@@ -84,7 +83,7 @@ class Ellipse
 		end
 		res
 	end
-end
+end # Ellipse
 
 def dist(x,y)
 	Math.sqrt((y[0]-x[0])**2 + (y[1]-x[1])**2)
@@ -100,6 +99,35 @@ def diameter(points)
 		end
 	end
 	[best[1], best[2]]
+end
+
+def translate(points,dx,dy)
+	points.map do |x|
+		x = [x[0]+dx, x[1]+dy]
+	end
+end
+
+def rotate(points, phi)
+	cphi = Math.cos(phi)
+	sphi = Math.sin(phi)
+	points.map do |p|
+		x = p[0]
+		y = p[1]
+		[ x*cphi + y*sphi,
+		-x*sphi + y*cphi]
+	end
+end
+
+def scale(points,kx,ky)
+	points.map do |x|
+		[x[0]*kx, x[1]*ky]
+	end
+end
+
+def in_ellipse?(el,x)
+	c = el.centre
+	c,x = rotate([c,x], -el.phi)
+	return (x[0]-c[0])**2 / el.axes[0]**2 + (x[1]-c[1])**2 / el.axes[1] <= 1
 end
 
 def farthest(line, points, dev)
@@ -143,28 +171,6 @@ def find_rect(points)
 	]
 end
 
-def translate(points,dx,dy)
-	points.map do |x|
-		x = [x[0]+dx, x[1]+dy]
-	end
-end
-
-def rotate(points, phi)
-	cphi = Math.cos(phi)
-	sphi = Math.sin(phi)
-	points.map do |p|
-		x = p[0]
-		y = p[1]
-		[ x*cphi + y*sphi,
-		-x*sphi + y*cphi]
-	end
-end
-
-def scale(points,kx,ky)
-	points.map do |x|
-		[x[0]*kx, x[1]*ky]
-	end
-end
 
 def get_transf_coef(rect)
 	x = rect[0]
@@ -195,6 +201,7 @@ end
 
 # You should care:
 # points must be float!
+# Returns ellips with variation seq
 def petunin(points)
 	if points.size() < 4
 		puts "Error on #{__LINE__} in #{__FILE__}"
@@ -203,7 +210,7 @@ def petunin(points)
 	#return [x,x0,y,y0]
 	rect = find_rect(points)
 	dx, phi, coef = get_transf_coef(rect)
-
+	dx.each {}
 	#rect = translate(rect, -dx[0], -dx[1])
 	rect = rotate(rect, phi)
 	rect = scale(rect, 1.0, coef)
@@ -215,28 +222,33 @@ def petunin(points)
 	centre = rect[0].zip(rect[2]).to_a.map { |u,v| (u+v)/2 }
 	rs = []
 	points.each do |p|
-		rs << dist(p, centre)
+		rs << [dist(p, centre), p]
 	end
-	rs = rs.sort.reverse
+	rs = rs.sort
 
-	el = Ellipse.new
-	el.centre = centre
-	el.axes = [rs[0]]*2
+	res = []
 
-	#back
-	rect = scale(rect, 1, 1/coef)
-	points = scale(points, 1, 1/coef)
-	el.scale(1, 1/coef)
+	rs.each do |r,p|
+		el = Ellipse.new
+		el.centre = centre
+		el.axes = [r]*2
 
-	rect = rotate(rect, -phi)
-	points = rotate(points, -phi)
-	el.rotate(-phi)
+		#back
+		el.scale(1, 1/coef)
 
-	#rect = translate(rect, dx[0], dx[1])
-	#points = translate(points, dx[0], dx[1])
-	#el.translate(dx[0],dx[1])
+		el.rotate(-phi)
+		res << [el,p]
+	end
 
-	points.map! { |x| [x] }
-	
-	[el.get_draw_data] + points + [rect]
+	return res
+
+	# For testing reasons only
+
+	#rect = scale(rect, 1, 1/coef)
+	#points = scale(points, 1, 1/coef)
+	#rect = rotate(rect, -phi)
+	#points = rotate(points, -phi)
+	#points.map! { |x| [x] }
+
+	#points + [rect] + res.inject([]) { |sum,el| sum + [el.get_draw_data] }
 end
