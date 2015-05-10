@@ -5,10 +5,10 @@ require_relative 'ellipse.rb'
 #  si = [pi]       1d
 def p_stat(s1, s2)
 	# What if m = 1 and hij = P(Aij)?
-	m = 100#s2.size()*2
 	g = 3.0
 	s1,s2=[s2,s1] if (s1.size > s2.size)
 	if s1[0].is_a? Array
+		m = 100#s2.size()*2
 		s1 = petunin(s1)
 		s2 = petunin(s2)
 
@@ -46,6 +46,7 @@ def p_stat(s1, s2)
 		nn = n*(n-1)/2.0
 		return ll/nn
 	else
+		m = 3000#s2.size()*2
 		s1.sort!
 		s2.sort!
 		n = s1.size

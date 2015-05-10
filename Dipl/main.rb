@@ -1,23 +1,7 @@
 require_relative 'draw.rb'
 require_relative 'p_stat.rb'
 require_relative 'ellipse.rb'
-
-def make_seq(str)
-	m = {
-		'A' => [1.0,0.8],
-		'G' => [1.0,0.6],
-		'C' => [1.0,0.4],
-		'T' => [1.0,0.2]
-	}
-
-	p = [0]*2
-	arr = []
-	str.chars.each do |c|
-		p = p.zip(m[c]).to_a.map { |x,y| x+y }
-		arr << p
-	end
-	arr
-end
+require_relative 'trans_dna.rb'
 
 gen = {}
 spec = []
