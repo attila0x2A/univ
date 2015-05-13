@@ -14,25 +14,38 @@ test_files.each do |file|
 	end
 end
 
-matr = [['-']+spec]
-(0..spec.size-1).each do |i|
-	row = []
-	row << spec[i]
-	(i+1).times { row << '-' }
-	(i+1..spec.size()-1).each do |j|
-		t1 = make_seq(gen[spec[i]])
-		t2 = make_seq(gen[spec[j]])
-		puts "#{t1.size()} & #{t2.size()}"
-		stat = p_stat(t1, t2)
-		row << stat
-		puts "#{spec[i]} , #{spec[j]}  : #{stat}"
-	end
-	matr << row
-end
+fd = File.open("results", 'w')
+METHODS = 7
+bad_meth = [3,6]
+#(2..METHODS).each do |meth|
+bad_meth.each do |meth|
+	matr = [['-']+spec]
+	(0..spec.size-1).each do |i|
+		row = []
+		row << spec[i]
+		(i+1).times { row << '-' }
+		(i+1..spec.size()-1).each do |j|
+			t1 = make_seq(meth, gen[spec[i]])
+			t2 = make_seq(meth, gen[spec[j]])
 
-matr.each do |row|
-	row.each { |el| print "#{el}, " }
-	print "\n"
+			if (t1.sort.uniq.size != t1.size ||
+					t2.sort.uniq.size != t2.size)
+				puts "Method ##{meth} generates sequences with duplicating elements"
+			end
+
+			puts "#{t1.size()} & #{t2.size()}"
+			stat = p_stat(t1, t2)
+			row << stat
+			puts "#{spec[i]} , #{spec[j]}  : #{stat}"
+		end
+		matr << row
+	end
+
+	fd.puts meth
+	matr.each do |row|
+		row.each { |el| fd.print "#{el}, " }
+		fd.print "\n"
+	end
 end
 
 
