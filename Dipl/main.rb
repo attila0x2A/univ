@@ -17,8 +17,8 @@ end
 fd = File.open("results", 'w')
 METHODS = 7
 bad_meth = [3,6]
-#(2..METHODS).each do |meth|
-bad_meth.each do |meth|
+(1..METHODS).each do |meth|
+#bad_meth.each do |meth|
 	matr = [['-']+spec]
 	(0..spec.size-1).each do |i|
 		row = []

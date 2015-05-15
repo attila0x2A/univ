@@ -16,7 +16,7 @@ def p_stat(s1, s2)
 	gamma2 = s2.map { |x| (t2[x] - 1) / (s2.size + 1) }
 	s1,s2=[s2,s1] if (s1.size > s2.size)
 	if s1[0].is_a? Array
-		m = 100#s2.size()
+		m = s2.size()
 		s1 = petunin(s1)
 		#s2 = petunin(s2) # Why?
 
@@ -39,7 +39,7 @@ def p_stat(s1, s2)
 				eli = s1[i][0]
 				h = 0
 				m.times do |k|
-					k = Random.rand(s2.size)
+					#k = Random.rand(s2.size)
 					x = s2[k]#[1]
 					h += 1 if in_ellipse?(elj,x) && !in_ellipse?(eli,x)
 				end
