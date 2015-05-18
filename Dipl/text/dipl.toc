@@ -1,0 +1,12 @@
+\select@language {ukrainian}
+\contentsline {section}{\numberline {1}\IeC {\CYRV }\IeC {\cyrs }\IeC {\cyrt }\IeC {\cyru }\IeC {\cyrp }}{2}{section.1}
+\contentsline {section}{\numberline {2}\IeC {\CYRO }\IeC {\cyrg }\IeC {\cyrl }\IeC {\cyrya }\IeC {\cyrd } \IeC {\cyrl }\IeC {\cyrii }\IeC {\cyrt }\IeC {\cyre }\IeC {\cyrr }\IeC {\cyra }\IeC {\cyrt }\IeC {\cyru }\IeC {\cyrr }\IeC {\cyri }}{3}{section.2}
+\contentsline {section}{\numberline {3}\IeC {\CYRP }\IeC {\cyro }\IeC {\cyrs }\IeC {\cyrt }\IeC {\cyra }\IeC {\cyrn }\IeC {\cyro }\IeC {\cyrv }\IeC {\cyrk }\IeC {\cyra } \IeC {\cyrz }\IeC {\cyra }\IeC {\cyrd }\IeC {\cyra }\IeC {\cyrch }\IeC {\cyrii }}{6}{section.3}
+\contentsline {section}{\numberline {4}\IeC {\CYRA }\IeC {\cyrl }\IeC {\cyrg }\IeC {\cyro }\IeC {\cyrr }\IeC {\cyri }\IeC {\cyrt }\IeC {\cyrm } \IeC {\cyrr }\IeC {\cyro }\IeC {\cyrz }\IeC {\cyrv }\IeC {\textquoteright }\IeC {\cyrya }\IeC {\cyrz }\IeC {\cyra }\IeC {\cyrn }\IeC {\cyrn }\IeC {\cyrya }}{6}{section.4}
+\contentsline {paragraph}{\IeC {\CYRM }\IeC {\cyre }\IeC {\cyrt }\IeC {\cyro }\IeC {\cyrd } 1}{6}{section*.2}
+\contentsline {paragraph}{\IeC {\CYRM }\IeC {\cyre }\IeC {\cyrt }\IeC {\cyro }\IeC {\cyrd } 2}{6}{section*.3}
+\contentsline {paragraph}{\IeC {\CYRM }\IeC {\cyre }\IeC {\cyrt }\IeC {\cyro }\IeC {\cyrd } 3}{6}{section*.4}
+\contentsline {paragraph}{\IeC {\CYRM }\IeC {\cyre }\IeC {\cyrt }\IeC {\cyro }\IeC {\cyrd } 4}{7}{section*.5}
+\contentsline {paragraph}{\IeC {\CYRM }\IeC {\cyre }\IeC {\cyrt }\IeC {\cyro }\IeC {\cyrd } 5}{7}{section*.6}
+\contentsline {paragraph}{\IeC {\CYRM }\IeC {\cyre }\IeC {\cyrt }\IeC {\cyro }\IeC {\cyrd } 6}{7}{section*.7}
+\contentsline {paragraph}{\IeC {\CYRM }\IeC {\cyre }\IeC {\cyrt }\IeC {\cyro }\IeC {\cyrd } 7}{7}{section*.8}
