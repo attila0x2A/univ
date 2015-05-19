@@ -1,0 +1,162 @@
+\documentclass[mathserif,serif,10pt]{beamer}
+\usepackage[T2A,T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[ukrainian]{babel}
+\usepackage{pgfplots}
+\usepackage{hyperref}
+%\usepackage[margin=0.6in]{geometry}
+
+\begin{document}
+
+\begin{frame}
+ \frametitle{Метод 1}
+Нуклеотидам A, G, C і T ставляться у відповідність вектори: A $(1,0.8)$, G $(1,0.6)$, C $(1,0.4)$, T $(1,0.2)$.
+Послідовність отримуємо, сумуючи вектори, що відповідають нуклеотидам з послідовності.
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[xmin=0,ymin=0]
+\addplot[color=red,mark=x] coordinates {
+(0,0)
+(1.0, 0.8)
+(2.0, 1.0)
+(3.0, 1.6)
+(4.0, 2.0)
+(5.0, 2.2)
+(6.0, 2.8)
+(7.0, 3.2)
+(8.0, 3.4)
+(9.0, 4.0)
+(10.0, 4.8)
+};
+\pgfplotsset{
+after end axis/.code={
+\node[black,above] at (axis cs:1,0.8){\small{$A$}};
+\node[black,above] at (axis cs:2.0, 1.0){\small{$T$}};
+\node[black,above] at (axis cs:3.0, 1.6){\small{$G$}};
+\node[black,above] at (axis cs:4.0, 2.0){\small{$C$}};
+\node[black,above] at (axis cs:5.0, 2.2){\small{$T$}};
+\node[black,above] at (axis cs:6.0, 2.8){\small{$G$}};
+\node[black,above] at (axis cs:7.0, 3.2){\small{$C$}};
+\node[black,above] at (axis cs:8.0, 3.4){\small{$T$}};
+\node[black,above] at (axis cs:9.0, 4.0){\small{$G$}};
+\node[black,above] at (axis cs:10.0, 4.8){\small{$A$}};
+}
+}
+\end{axis}
+\end{tikzpicture}
+\end{center}
+\caption{Графічне представлення послідовності ATGCTGCTGA}
+\label{fig:1}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Метод 2}
+Спочатку використаємо попередній метод щоб отримати числову послідовність $(x_i,y_i)$. Далі використаємо наступну формулу для обчислення результуючої послідовності:
+\[{x_i-\overrightarrow{y_i} \over{{1\over2}n(n+1)-y_n}},\]
+де $\overrightarrow{y_i}$ це $y$-компонента вектора, що відповідає $i$-тому нуклеотиду при використанні методу 1, $n$ це розмір ДНК послідовності.
+\end{frame}
+
+\begin{frame}
+\frametitle{Метод 3}
+Нуклеотидам A, G, C, T ставимо у відповідність вектори $(-1,0)$, $(1,0)$,
+$(0,1)$, $(0,-1)$. Починаємо з точки $(0,0)$ і рухаємось по відповіднім
+векторам. Точки через які ми проходимо утворюють послідовність, причому точка
+стільки разів зустрічається у послідовності, скільки разів ми в неї потрапили.
+\end{frame}
+
+\begin{frame}
+\frametitle{Метод 4}
+Розташовуємо нуклеотиди у вершинах квадрата зі стороною 1: A=$(0,0)$,
+G=$(1,1)$, C=$(0,1)$, T=$(1,0)$. Координати послідовності рахуються ітеративно,
+рухаючись на половину відстані між попередньою позицією і точкою квадрата, якій
+відповідає наступний нуклеотид у напрямку цієї точки. Ітеративну процедуру
+можна задати наступним чином:
+\[p_i = p_{i-1}-0.5(p_{i-1}-g_i)\]
+\[i=1,...,n; p_0=(0.5,0.5),\]
+де $g_i$ - координати, що відповідають $i$-тому нуклеотиду, $n$ - довжина послідовності ДНК.
+\end{frame}
+
+\begin{frame}
+\frametitle{Метод 4}
+\begin{figure}[h!]
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[xmin=0,xmax=1,ymin=0,ymax=1]
+\addplot[color=red,mark=x] coordinates {
+(0.5,0.5)
+(0.25, 0.25)
+(0.625, 0.125)
+(0.8125, 0.5625)
+(0.40625, 0.78125)
+(0.703125, 0.390625)
+(0.8515625, 0.6953125)
+(0.42578125, 0.84765625)
+(0.712890625, 0.423828125)
+(0.8564453125, 0.7119140625)
+(0.42822265625, 0.35595703125)
+};
+\pgfplotsset{
+after end axis/.code={
+\node[black,above] at (axis cs:0.25, 0.25){\small{$A$}};
+\node[black,above] at (axis cs:0.62, 0.12){\small{$T$}};
+\node[black,right] at (axis cs:0.81, 0.56){\small{$G$}};
+\node[black,above] at (axis cs:0.40, 0.78){\small{$C$}};
+\node[black,left] at (axis cs:0.70, 0.39){\small{$T$}};
+\node[black,above] at (axis cs:0.85, 0.69){\small{$G$}};
+\node[black,above] at (axis cs:0.42, 0.84){\small{$C$}};
+\node[black,below] at (axis cs:0.71, 0.42){\small{$T$}};
+\node[black,right] at (axis cs:0.85, 0.71){\small{$G$}};
+\node[black,above] at (axis cs:0.42, 0.35){\small{$A$}};
+}
+}
+\end{axis}
+\end{tikzpicture}
+\end{center}
+\caption{Графічне представлення послідовності ATGCTGCTGA}
+\label{fig:f2}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Метод 5,6}
+
+Використовуємо попередній метод, щоб отримати послідовність $p_i$, отримуємо результуючу, як суму всіх попередніх:
+\[z_i = \sum_{j=1}^{i} p_i\]
+
+Отримуємо за допомогою методу 4 послідовність $p_i$ і, щоб отримати результуючу послідовність, кожній точці ставимо у відповідність число:
+\[z_i = x_i + y_i,\]
+де $p_i = (x_i,y_i)$.
+\end{frame}
+
+\begin{frame}
+\frametitle{Метод 7}
+Нуклеотидам A,C ставимо у відповідність $-1$, а нуклеотидам T,G ставимо у відповідність $1$. Починаючи з точки $0$ рухаємось ітеративно:
+\[p_i = p_{i-1} - {(g_i-p_{i-1}) \over{2}}sign(g_i)\]
+де $g_i$ число яке відвідає $i$-тому нуклеотиду. Тобто ми, подібно до методу 4, рухаємося на пів відстань до числа яке відповідає $i$-тому нуклеотиду.
+\end{frame}
+
+\begin{frame}
+\frametitle{$p$-статистика}
+$G$ і $G'$-генеральні сукупності.
+$x=(x_1,...,x_n)\in G$ і $x'=(x_1',...,x_m')\in G'$, $x_{(1)}<...<x_{(n)}$, $x_{(1)}'<...<x_{(n)}'$ - порядкові статистики.
+Припустимо, що $F_G(u) = F_{G'}(u)$.
+$A_{ij}^{(k)} = \left\{x_k' \in \left(x_{(i)}, x_{(j)}\right)\right\}$.
+Якщо $F_G(u) = F_{G'}(u)$:
+\[P\left(A_{ij}^{(k)}\right) = P\left(x_k' \in \left(x_{(i)}, x_{(j)}\right)\right) = p_{ij}^{(n)} = {{j-i}\over{n+1}} = {{q}\over{n+1}}, q = j-i\]
+\begin{equation}\label{eq:p1}
+p_{ij}^{(1)} = {{h_{ij}^{(n)}m+g^2/2-g\sqrt{h_{ij}^{(n)}(1-h)m+g^2/4}}\over{m+g^2}},
+\end{equation}
+\begin{equation}\label{eq:p2}
+p_{ij}^{(2)} = {{h_{ij}^{(n)}m+g^2/2+g\sqrt{h_{ij}^{(n)}(1-h)m+g^2/4}}\over{m+g^2}},
+\end{equation}
+де $h_{ij}^{(n)}$ — частота події $A_{ij}^{(n)}$
+в $m$ випробуваннях.
+$N$ кількість інтервалів
+$I_{ij}^{(n,m)} = \left(p_{ij}^{(1)},p_{ij}^{(2)}\right)$ ($N=n(n-1)/2$) і $L$ -
+кількість інтервалів $I_{ij}^{(n,m)}$, які містять ймовірності $p_{ij}^{(n)}$.
+$h^{(n,m)}= \rho(x,x') = {L\over{N}}$ будемо називати $p$-статистикою.
+\end{frame}
+
+\end{document}
