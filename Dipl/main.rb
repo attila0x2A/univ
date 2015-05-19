@@ -16,15 +16,16 @@ end
 
 fd = File.open("results", 'w')
 METHODS = 7
-bad_meth = [3,6]
-(1..METHODS).each do |meth|
-#bad_meth.each do |meth|
+bad_meth = [2]
+#(1..METHODS).each do |meth|
+bad_meth.each do |meth|
 	matr = [['-']+spec]
 	(0..spec.size-1).each do |i|
 		row = []
 		row << spec[i]
-		(i+1).times { row << '-' }
-		(i+1..spec.size()-1).each do |j|
+		j=i
+		#(i+1).times { row << '-' }
+		#(i+1..spec.size()-1).each do |j|
 			t1 = make_seq(meth, gen[spec[i]])
 			t2 = make_seq(meth, gen[spec[j]])
 
@@ -37,7 +38,7 @@ bad_meth = [3,6]
 			stat = p_stat(t1, t2)
 			row << stat
 			puts "#{spec[i]} , #{spec[j]}  : #{stat}"
-		end
+		#end
 		matr << row
 	end
 
