@@ -64,6 +64,11 @@ after end axis/.code={
 $(0,1)$, $(0,-1)$. Починаємо з точки $(0,0)$ і рухаємось по відповіднім
 векторам. Точки через які ми проходимо утворюють послідовність, причому точка
 стільки разів зустрічається у послідовності, скільки разів ми в неї потрапили.
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.65\textwidth]{meth3}
+\caption{Графічне представлення послідовності ATGCTGCTGA}
+\end{figure}
 \end{frame}
 
 \begin{frame}
@@ -135,6 +140,13 @@ after end axis/.code={
 Нуклеотидам A,C ставимо у відповідність $-1$, а нуклеотидам T,G ставимо у відповідність $1$. Починаючи з точки $0$ рухаємось ітеративно:
 \[p_i = p_{i-1} - {(g_i-p_{i-1}) \over{2}}sign(g_i)\]
 де $g_i$ число яке відвідає $i$-тому нуклеотиду. Тобто ми, подібно до методу 4, рухаємося на пів відстань до числа яке відповідає $i$-тому нуклеотиду.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.55\textwidth]{meth7}
+\caption{Графічне представлення послідовності ATGGTGCACC}
+\end{figure}
+
 \end{frame}
 
 \begin{frame}
@@ -158,5 +170,241 @@ $I_{ij}^{(n,m)} = \left(p_{ij}^{(1)},p_{ij}^{(2)}\right)$ ($N=n(n-1)/2$) і $L$ 
 кількість інтервалів $I_{ij}^{(n,m)}$, які містять ймовірності $p_{ij}^{(n)}$.
 $h^{(n,m)}= \rho(x,x') = {L\over{N}}$ будемо називати $p$-статистикою.
 \end{frame}
+
+\begin{frame}
+\frametitle{Модифікована $p$-статистика}
+Нехай $t(x_k)$ - кратість вибіркового значення $x_k$
+\[
+p_{ij}=p\left(A_{ij}\right)=p\left(x^{*} \in (x_{(i)}, x_{(j)})\right) \approx
+\gamma_i + \gamma_{i+1} + ... + \gamma_{j-1} + {{j-i}\over{n+1}},
+\]
+\[\gamma_{l} = \gamma \left(x_{(l)}\right) = {{t(x_{(l)})-1}\over{n+1}},\]
+\end{frame}
+
+\begin{frame}
+\frametitle{Еліпси Петуніна}
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.55\textwidth]{pet1}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Еліпси Петуніна}
+\begin{figure}[h!]
+\centering
+\includegraphics[width=1.0\textwidth]{pet2}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Еліпси Петуніна}
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.8\textwidth]{pet3}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Еліпси Петуніна}
+При побудові $p$-статистики варіаційному ряду вибірок
+$\overrightarrow{x}_{(1)} \preceq \overrightarrow{x}_{(2)} \preceq
+... \preceq \overrightarrow{x}_{(n)}$ поставимо у відповідність послідовність
+вкладених еліпсоїдів $E_{(1)} \subset E_{(2)} \subset ... \subset E_{(n)}$. Ймовірність того, що елемент $\overrightarrow{x}$ із генеральної сукупності $G$ задовольняє умові $\overrightarrow{x}_{(i)} \preceq \overrightarrow{x} \preceq
+\overrightarrow{x}_{(j)}$, рівна ймовірності потрапити між еліпсами $E_{(i)}$ і $E_{(j)}$, тобто $j-i \over n+1$. Ця умова дозволяє побудувати $p$-статистику для багатовимірного випадку. \par
+Таким чином будуємо $p$-статистику як завжди, тільки подія $A_{ij}^{(k)}$ буде полягати в тому, що $x_k'$ попаде в область $E_{(j)} \setminus E_{(i)}$.
+\end{frame}
+
+\begin{frame}
+\frametitle{Результати}
+\begin{table}[h!]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+- & gallus & rat & rabbit & human & duck & gorilla \\ \hline
+gallus & - & 0.009 & 0.009 & 0.0045 & 0.01365 & 0.01811 \\ \hline
+rat & - & - & 0.00869 & 0.00633 & 0.00797 & 0.0088 \\ \hline
+rabbit & - & - & - & 0.00619 & 0.00996 & 0.011 \\ \hline
+human & - & - & - & - & 0.00595 & 0.00441 \\ \hline
+duck & - & - & - & - & - & 0.01754 \\ \hline
+gorilla & - & - & - & - & - & - \\ \hline
+\end{tabular}
+\end{center}
+\caption{$p$-статистики при представленні ДНК методом 1}
+\label{table:res1}
+\end{table}
+
+\begin{table}[h!]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+- & gallus & rat & rabbit & human & duck & gorilla \\ \hline
+gallus & - & 0.03221 & 0.03896 & 0.0177 & 0.07635 & 0.09232 \\ \hline
+rat & - & - & 0.30299 & 0.07789 & 0.06678 & 0.05958 \\ \hline
+rabbit & - & - & - & 0.05915 & 0.09386 & 0.08013 \\ \hline
+human & - & - & - & - & 0.03564 & 0.03172 \\ \hline
+duck & - & - & - & - & - & 0.72326 \\ \hline
+gorilla & - & - & - & - & - & - \\ \hline
+\end{tabular}
+\end{center}
+\caption{$p$-статистики при представленні ДНК методом 2}
+\label{table:res2}
+\end{table}
+
+\end{frame}
+\begin{frame}
+\frametitle{Результати}
+
+\begin{table}[h!]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+- & gallus & rat & rabbit & human & duck & gorilla \\ \hline
+gallus & - & 0.01839 & 0.01839 & 0.00922 & 0.02752 & 0.04045 \\ \hline
+rat & - & - & 0.03393 & 0.01004 & 0.02045 & 0.0182 \\ \hline
+rabbit & - & - & - & 0.0105 & 0.02045 & 0.0182 \\ \hline
+human & - & - & - & - & 0.00821 & 0.00912 \\ \hline
+duck & - & - & - & - & - & 0.03174 \\ \hline
+gorilla & - & - & - & - & - & - \\ \hline
+\end{tabular}
+\end{center}
+\caption{$p$-статистики при представленні ДНК методом 3}
+\label{table:res3}
+\end{table}
+
+\begin{table}[h!]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+- & gallus & rat & rabbit & human & duck & gorilla \\ \hline
+gallus & - & 0.20654 & 0.20122 & 0.18473 & 0.28257 & 0.32461 \\ \hline
+rat & - & - & 0.15438 & 0.12881 & 0.22096 & 0.20542 \\ \hline
+rabbit & - & - & - & 0.1298 & 0.2198 & 0.21226 \\ \hline
+human & - & - & - & - & 0.16495 & 0.16271 \\ \hline
+duck & - & - & - & - & - & 0.22192 \\ \hline
+gorilla & - & - & - & - & - & - \\ \hline
+\end{tabular}
+\end{center}
+\caption{$p$-статистики при представленні ДНК методом 4}
+\label{table:res4}
+\end{table}
+
+\end{frame}
+\begin{frame}
+\frametitle{Результати}
+
+
+\begin{table}[h!]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+- & gallus & rat & rabbit & human & duck & gorilla \\ \hline
+gallus & - & 0.009 & 0.00902 & 0.0045 & 0.01367 & 0.01821 \\ \hline
+rat & - & - & 0.00877 & 0.00635 & 0.00801 & 0.00882 \\ \hline
+rabbit & - & - & - & 0.0062 & 0.01 & 0.01101 \\ \hline
+human & - & - & - & - & 0.00595 & 0.00446 \\ \hline
+duck & - & - & - & - & - & 0.01759 \\ \hline
+gorilla & - & - & - & - & - & - \\ \hline
+\end{tabular}
+\end{center}
+\caption{$p$-статистики при представленні ДНК методом 5}
+\label{table:res5}
+\end{table}
+
+\begin{table}[h!]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+- & gallus & rat & rabbit & human & duck & gorilla \\ \hline
+gallus & - & 0.41829 & 0.46788 & 0.18442 & 0.35209 & 0.46493 \\ \hline
+rat & - & - & 0.995 & 0.34451 & 0.50635 & 0.43534 \\ \hline
+rabbit & - & - & - & 0.37162 & 0.52875 & 0.60944 \\ \hline
+human & - & - & - & - & 0.8112 & 0.38868 \\ \hline
+duck & - & - & - & - & - & 0.49541 \\ \hline
+gorilla & - & - & - & - & - & - \\ \hline
+\end{tabular}
+\end{center}
+\caption{$p$-статистики при представленні ДНК методом 6}
+\label{table:res6}
+\end{table}
+
+\end{frame}
+\begin{frame}
+\frametitle{Результати}
+
+\begin{table}[h!]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+- & gallus & rat & rabbit & human & duck & gorilla \\ \hline
+gallus & - & 0.59803 & 0.56986 & 0.90713 & 0.88857 & 0.94818 \\ \hline
+rat & - & - & 0.99778 & 0.56047 & 0.39723 & 0.40133 \\ \hline
+rabbit & - & - & - & 0.42243 & 0.38003 & 0.3786 \\ \hline
+human & - & - & - & - & 0.59813 & 0.77453 \\ \hline
+duck & - & - & - & - & - & 0.95202 \\ \hline
+gorilla & - & - & - & - & - & - \\ \hline
+\end{tabular}
+\end{center}
+\caption{$p$-статистики при представленні ДНК методом 7}
+\label{table:res7}
+\end{table}
+\end{frame}
+
+\begin{frame}
+\frametitle{Висновки}
+Алгоритм побудови $p$-статистик для послідовностей ДНК досить повільний. Тому не доцільно його застосовувати при послідовностях, довжина яких перевищує $10^3$.
+\par
+
+Результати суперечать інтуїтивному уявленню, про зв’язок близькості геномних послідовностей і міжвидової близькості.
+\end{frame}
+
+\begin{thebibliography}{9}
+
+\begin{frame}
+\frametitle{Література}
+
+\bibitem{l1}
+Chenglong Yu, Mo Deng, Stephen S.-T. Yau,
+DNA sequence comparison by a novel probabilistic method,
+Information Sciences 181 (2011) 1484–1492
+\bibitem{l2}
+Dorota Bielinska-Waz, Timothy Clark, Piotr Waz, Wiesław Nowak, Ashesh Nandy,
+2D-dynamic representation of DNA sequences,
+Chemical Physics Letters 442 (2007) 140–144
+\bibitem{l3}
+Wei Deng and Yihui Luan,
+Hindawi Publishing Corporation,
+Analysis of Similarity/Dissimilarity of DNA Sequences Based on Chaos Game Representation,
+Abstract and Applied Analysis,
+Volume 2013, Article ID 926519, 6 pages,
+http://dx.doi.org/10.1155/2013/926519
+\end{frame}
+\begin{frame}
+\frametitle{Література}
+\bibitem{l4}
+Jure Zupan and Milan Randic,
+Algorithm for Coding DNA Sequences into “Spectrum-like” and “Zigzag” Representations,
+J. Chem. Inf. Model. 2005, 45, 309-313
+\bibitem{l5}
+Д. А. Клюшин, Ю. И. Петунин,
+Непараметрический Критерий Эквивалентности Генеральных Совокупностей, основанный На Мере Близости Между Выборками,
+ДК 519.21
+\bibitem{l6}
+Д. А. Клюшин, М. В. Присяжная,
+Многомерное ранжирование с помощью эллипсов Петунина,
+Журнал обчисл. та прикл. матем. № 4(114) 2013, стор. 1-7,
+УДК 519.71
+\bibitem{l7}
+Дмитро А. Клюшин,
+Міра близькості між виборками, що містять атоми,
+Вісник Київського університету,
+Серія: фізико-математичні науки,
+2005, 3,
+УДК 519.9
+
+\end{frame}
+\end{thebibliography}
+
+
 
 \end{document}

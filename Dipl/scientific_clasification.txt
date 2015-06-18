@@ -1,0 +1,54 @@
+Rabbit
+Kingdom         : Animalia
+Phylum          : Chordata
+Subphylum       : Vertebrata
+Class           : Mammalia
+Order           : Lagomorpha
+Family          : Leporidae
+
+Rat
+Kingdom         : Animalia
+Phylum          : Chordata
+Class           : Mammalia
+Order           : Rodentia
+Superfamily     : Muroidea
+Family          : Muridae
+Subfamily       : Murinae
+Genus           : Rattus
+
+Duck
+Kingdom         : Animalia
+Phylum          : Chordata
+Class           : Aves
+Order           : Anseriformes
+Family          : Anatidae
+
+Gallus
+Kingdom         : Animalia
+Phylum          : Chordata
+Class           : Aves
+Order           : Galliformes
+Family          : Phasianidae
+Subfamily       : Phasianinae
+Genus           : Gallus
+
+Human
+Kingdom         : Animalia
+Phylum          : Chordata
+Class           : Mammalia
+Order           : Primates
+Suborder        : Haplorhini
+Family          : Hominidae
+Genus           : Homo
+Species         : H. sapiens
+
+Gorilla gorilla
+Kingdom         : Animalia
+Phylum          : Chordata
+Class           : Mammalia
+Order           : Primates
+Superfamily     : Hominoidea
+Family          : Hominidae
+Subfamily       : Homininae
+Tribe           : Gorillini
+Genus           : Gorilla

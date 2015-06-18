@@ -11,18 +11,38 @@ while line = fd.gets
 end
 all << cur
 
-all.each do |cur|
-	print '\begin{tabular}{|c|c|c|c|c|c|c|}' + "\n"
-	puts '\hline'
-	cur.each do |r|
-		r.each do |x|
-			if x.is_a? Numeric
-				print("%0.10f & " % x)
+data = {}
+all.each.with_index do |cur,num|
+	ind = {}
+	cur[0].each.with_index do |x,i|
+		if x != '-'
+			data[x.strip] = {}
+			ind[i-1] = x.strip
+		end
+	end
+
+	p num+1
+	cur[1..-1].each do |ar|
+		item = ar[0]
+		ar[1..-1].each.with_index do |x,i|
+			if x!='-'&&x!="-\n"
+				data[item][ind[i]] = x
 			else
-				print("#{x} & ")
+				#data[item]
 			end
 		end
-		print '\\\\ \hline' + "\n"
 	end
-	print '\end{tabular}' + "\n"
+	
+	res = {}
+
+	data.each do |k,v|
+		v.each do |k1,d|
+			res[d] = [k,k1]
+		end
+	end
+	keys = res.keys
+	keys.sort.each do |k|
+		puts res[k][0]+' '+res[k][1]+' '+k.to_s
+	end
+	puts '-'*72
 end
