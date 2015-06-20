@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.5.17)  18 JUN 2015 14:44
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.5.17)  21 JUN 2015 00:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1446,9 +1446,6 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 52.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Overfull \vbox (6.0994pt too high) detected at line 52
- []
-
 
 LaTeX Font Warning: Font shape `T2A/cmr/m/n' in size <4> not available
 (Font)              size <5> substituted on input line 52.
@@ -1459,17 +1456,17 @@ LaTeX Font Warning: Font shape `T2A/cmr/m/n' in size <4> not available
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 59.
+(amsmath)                 on input line 61.
 
 [2
 
 ] <meth3.png, id=76, 578.16pt x 433.62pt>
 File: meth3.png Graphic file (type png)
  <use meth3.png>
-Package pdftex.def Info: meth3.png used on input line 72.
-(pdftex.def)             Requested size: 199.73653pt x 149.79755pt.
+Package pdftex.def Info: meth3.png used on input line 75.
+(pdftex.def)             Requested size: 178.22868pt x 133.66652pt.
 
-Overfull \vbox (4.3844pt too high) detected at line 72
+Overfull \vbox (0.25337pt too high) detected at line 75
  []
 
 [3
@@ -1480,49 +1477,49 @@ Overfull \vbox (4.3844pt too high) detected at line 72
 
 ] [6
 
-] <meth7.png, id=183, 367.3725pt x 242.9075pt>
+] [7
+
+] <meth7.png, id=209, 367.3725pt x 242.9075pt>
 File: meth7.png Graphic file (type png)
 
 <use meth7.png>
-Package pdftex.def Info: meth7.png used on input line 150.
+Package pdftex.def Info: meth7.png used on input line 165.
 (pdftex.def)             Requested size: 169.01036pt x 111.75362pt.
 
-Overfull \vbox (1.35178pt too high) detected at line 150
+Overfull \vbox (1.35178pt too high) detected at line 165
  []
 
-[7
+[8
 
- <./meth7.png>] [8
+ <./meth7.png>] [9
 
-] [9
+] [10
 
-] <pet1.png, id=266, 688.5725pt x 616.3025pt>
+] <pet1.png, id=291, 688.5725pt x 616.3025pt>
 File: pet1.png Graphic file (type png)
 
 <use pet1.png>
-Package pdftex.def Info: pet1.png used on input line 190.
+Package pdftex.def Info: pet1.png used on input line 205.
 (pdftex.def)             Requested size: 169.01036pt x 151.27284pt.
- [10
+ [11
 
- <./pet1.png>] <pet2.png, id=293, 781.92125pt x 563.10374pt>
+ <./pet1.png>] <pet2.png, id=318, 781.92125pt x 563.10374pt>
 File: pet2.png Graphic file (type png)
 
 <use pet2.png>
-Package pdftex.def Info: pet2.png used on input line 198.
+Package pdftex.def Info: pet2.png used on input line 213.
 (pdftex.def)             Requested size: 307.28987pt x 221.29366pt.
- [11
+ [12
 
- <./pet2.png>] <pet3.png, id=320, 780.9175pt x 678.535pt>
+ <./pet2.png>] <pet3.png, id=345, 780.9175pt x 678.535pt>
 File: pet3.png Graphic file (type png)
 
 <use pet3.png>
-Package pdftex.def Info: pet3.png used on input line 206.
+Package pdftex.def Info: pet3.png used on input line 221.
 (pdftex.def)             Requested size: 245.83282pt x 213.60506pt.
- [12
+ [13
 
- <./pet3.png>] [13
-
-] [14
+ <./pet3.png>] [14
 
 ] [15
 
@@ -1534,7 +1531,9 @@ Package pdftex.def Info: pet3.png used on input line 206.
 
 ] [19
 
- </home/attila/texmf/tex/latex/beamer/art/beamericonarticle.pdf>] [20
+] [20
+
+ </home/attila/texmf/tex/latex/beamer/art/beamericonarticle.pdf>] [21
 
 ]
 \tf@nav=\write6
@@ -1546,11 +1545,11 @@ Package pdftex.def Info: pet3.png used on input line 206.
 \tf@snm=\write8
 \openout8 = `pres.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 410.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 410.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 425.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 425.
  (./pres.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 410.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 410.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 425.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 425.
 Package rerunfilecheck Info: File `pres.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 
@@ -1558,16 +1557,16 @@ Package rerunfilecheck Info: File `pres.out' has not changed.
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.0pt have occurred.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 410.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 425.
  ) 
 Here is how much of TeX's memory you used:
- 27207 strings out of 494514
- 606981 string characters out of 6173760
- 806804 words of memory out of 5000000
- 29752 multiletter control sequences out of 15000+600000
+ 27211 strings out of 494514
+ 607016 string characters out of 6173760
+ 806802 words of memory out of 5000000
+ 29754 multiletter control sequences out of 15000+600000
  13960 words of font info for 45 fonts, out of 8000000 for 9000
  430 hyphenation exceptions out of 8191
- 54i,15n,77p,721b,1819s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 54i,15n,77p,721b,1835s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/attila/.texmf-var/fonts/pk/ljfour/lh/lh-t2a/larm0900.600pk> </home/at
 tila/.texmf-var/fonts/pk/ljfour/lh/lh-t2a/larm1000.600pk> </home/attila/.texmf-
 var/fonts/pk/ljfour/lh/lh-t2a/larm1440.600pk></usr/share/texlive/texmf-dist/fon
@@ -1580,10 +1579,10 @@ cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr1
 usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/sh
 are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/tex
 live/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
-Output written on pres.pdf (20 pages, 300982 bytes).
+Output written on pres.pdf (21 pages, 302676 bytes).
 PDF statistics:
- 821 PDF objects out of 1000 (max. 8388607)
- 570 compressed objects within 6 object streams
- 59 named destinations out of 1000 (max. 500000)
+ 846 PDF objects out of 1000 (max. 8388607)
+ 595 compressed objects within 6 object streams
+ 61 named destinations out of 1000 (max. 500000)
  68 words of extra memory for PDF output out of 10000 (max. 10000000)
 
