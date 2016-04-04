@@ -1,0 +1,4 @@
+You need the following packages to be installed
+    gnuplot
+    gnuplot-qt or gnuplot-x11
+
